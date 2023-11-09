@@ -229,4 +229,16 @@ public class InMemoryMemberDAO implements MemberDAO {
                 .collect(Collectors.groupingBy(Member::house, Collectors.summarizingDouble(Member::salary)));
     }
 
+    /**
+     * Get 5 KINGs with the highest salaries
+     */
+    @Override
+    public List<Member> top5HighestSalariesKingsThenSortByDOB() {
+        return allMembers.stream()
+                .filter(member -> member.title() == Title.KING)
+                .sorted(Comparator.comparing(Member::salary).reversed()
+                        .thenComparing(Member::dob))
+                .limit(5)
+                .toList();
+    }
 }

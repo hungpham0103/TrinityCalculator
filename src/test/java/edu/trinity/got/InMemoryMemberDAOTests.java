@@ -212,4 +212,15 @@ public class InMemoryMemberDAOTests {
                         .isCloseTo(66666.66, withinPercentage(0.01))
         );
     }
+
+    @Test
+    public void top5HighestSalariesKingsThenSortByDOB() {
+        List<Member> list = dao.top5HighestSalariesKingsThenSortByDOB();
+
+        List<String> names = list.stream()
+                .map(Member::name)
+                .toList();
+
+        assertThat(names).containsExactly("Robert", "Stannis", "Robb", "Joffrey", "Jon");
+    }
 }

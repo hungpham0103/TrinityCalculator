@@ -44,4 +44,6 @@ public interface MemberDAO {
     Map<House, Long> numberOfMembersByHouse();
 
     Map<House, DoubleSummaryStatistics> houseStats();
+
+    List<Member> top5HighestSalariesKingsThenSortByDOB();
 }
